@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(46, 46, 46);
+    height: 95vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-canvas {
+    background-color: aliceblue;
+    cursor: none;
+}
