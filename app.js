@@ -1,66 +1,80 @@
 import {Grid} from './Grid.js'
+import {InputHandeler} from './InputHandeler.js'
+
 const canvas = document.getElementById("game-canvas")
+const speed_slider = document.getElementById("speed-slider")
+const speed_monitor = document.getElementById("speed-monitor")
+const start_button = document.getElementById("start-button")
+const clear_button = document.getElementById("clear-button")
 
-const grid = new Grid(canvas, 32)
-
-//Mouse Handeling 
-let lastVisted = [0, 0]
-
-function quantizeMouse(x, y){
-    x = Math.floor((x  / WIDTH) * (grid.resolution - 0.001))
-    y = Math.floor((y / WIDTH) * (grid.resolution - 0.001))
-
-    return {x, y}
-}
-
-canvas.addEventListener("mousemove", event =>{
-    let x = Math.floor((event.offsetX  / WIDTH) * (grid.resolution - 0.001))
-    let y = Math.floor((event.offsetY  / WIDTH) * (grid.resolution - 0.001))
-
-    grid.clearPointer(lastVisted[0], lastVisted[1], 0)
-    grid.mouseOver(x, y)
-
-    lastVisted = [x, y]
-})
-
-canvas.addEventListener("mousedown", event => {
-    let x = Math.floor((event.offsetX  / WIDTH) *  (grid.resolution - 0.001))
-    let y = Math.floor((event.offsetY  / WIDTH) *  (grid.resolution - 0.001))
-    
-    grid.changeState(x, y)
-})
+let speed = 400
 
 
-// Key handeling
-let pressed = []
 
-addEventListener("keydown", e =>{
-    if(!pressed.includes(e.key, 0)){
-        pressed.push(e.key)
-        eventHandeler(e.key)
-    }
-})
+// Custom Events
+let running = false
+let my_timer
 
-addEventListener("keyup", e => {
-    let index = pressed.indexOf(e.key)
-    if(index != -1) pressed.splice(index, 1)        
-})
-
-function eventHandeler(keydown) {
-    switch (keydown.toLowerCase()){
-        case " ":
+function run(time) {
+    if(running) {
+        setTimeout(()=>{
             grid.mutate()
-            break
-        case "c":
-            grid.initializeGrid()
-            grid.update()
-            break       
+            run(speed)
+        }, speed)
     }
 }
 
+document.addEventListener("start", ()=>{
+    if(!running) {
+        running = true
+        run(speed)
+        start_button.classList.add("active")
+    }
+    else {
+        clearInterval(my_timer)
+        running = false
+        start_button.classList.remove ("active")
+    }
+})
 
-const WIDTH = canvas.width
-const HEIGHT = canvas.height
+export let start = new CustomEvent("start", ()=>{})
 
+document.addEventListener("clear", ()=>{
+    grid.initializeGrid()
+    grid.update()
+
+    clear_button.style = "background: red"
+    setTimeout(()=>{
+        clear_button.style = "background: antiqewhite"
+    }, 100)
+
+})
+
+export let clear = new CustomEvent("clear", ()=>{})
+
+
+// Document listener
+speed_slider.addEventListener("input", updateSpeed)
+
+function updateSpeed(){
+    let value = (Math.pow(speed_slider.value / 100, 2) * 900) + 50
+    speed_monitor.innerText = "" + value.toPrecision(4) +" ms"
+    speed = value
+}
+
+start_button.addEventListener("mousedown", ()=>{
+    document.dispatchEvent(start)
+})
+
+clear_button.addEventListener("mousedown", ()=>{
+    document.dispatchEvent(clear)
+})
+
+
+
+// initialize objects
+const grid = new Grid(canvas, 16)
+const inputHandeler = new InputHandeler(canvas, grid)
 
 grid.update()
+updateSpeed()

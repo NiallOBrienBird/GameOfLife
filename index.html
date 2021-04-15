@@ -8,10 +8,28 @@
     <title>Document</title>
 </head>
 <body>
+    <div> </div>
     <div class="game-container">
         <canvas id="game-canvas" height="512" width="512"></canvas>
+        <div class="controls">
+            <div class="speed">
+                <input class="slider" id="speed-slider" type="range" min="0" max="100">
+                <span id="speed-monitor"></span>
+            </div>
+            <div class="buttons">
+                <div class="button" id="start-button">Start</div>
+                <div class="button" id="clear-button">Clear</div>
+            </div>
+        </div>
     </div>
+    <article>
+        <p>[SPACE] = Start</p>            
+        <p>[C] = Clear</p>
+        <p>[ARROW] = Translate grid</p>
+        <p>[R] = Randomize the grid</p>
+    </article>
     <script type="module" src="app.js"></script>
+    <script type="module" src="Grid.js"></script>
     <script type="module" src="Grid.js"></script>
 </body>
 </html>

@@ -1,12 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 body {
-    background-color: rgb(46, 46, 46);
+    background-image: linear-gradient(90deg, rgb(31, 31, 34), rgb(54, 52, 52));
     height: 95vh;
-    display: flex;
+    display: grid;
     align-items: center;
+
     justify-content: center;
+    font-family: "Roboto", "sans-serif";
+    padding: 0;
+    margin: 0;
+}
+
+article {
+   
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+article p {
+    color: #dddddd;
+    margin-top: 5%;
+    margin-left: 15%;
+    position: relative;
+    top: -8%;
+    height: 0.5rem;
 }
 
 #game-canvas {
     background-color: aliceblue;
     cursor: none;
+}
+
+.controls {
+    height: 20px;
+    margin: 10px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.buttons {
+    margin: 0;
+    width: 8rem;
+    display: flex;
+    direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    background-color: aliceblue;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    border-radius: 20px;
+    border: 2px solid black;
+
+    transition: ease-in-out 200ms;
+}
+
+.button:hover {
+    cursor: pointer;
+    border: 2px solid rgb(182, 104, 104);
+}
+ 
+.active {
+
+    animation-name: example;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    00%{background-image: linear-gradient(90deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    04%{background-image: linear-gradient(100deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    08%{background-image: linear-gradient(110deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    12%{background-image: linear-gradient(120deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    15%{background-image: linear-gradient(130deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    19%{background-image: linear-gradient(140deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    22%{background-image: linear-gradient(150deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    25%{background-image: linear-gradient(160deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    38%{background-image: linear-gradient(170deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    32%{background-image: linear-gradient(180deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    35%{background-image: linear-gradient(190deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    38%{background-image: linear-gradient(200deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    41%{background-image: linear-gradient(210deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    44%{background-image: linear-gradient(220deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    47%{background-image: linear-gradient(230deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    50%{background-image: linear-gradient(240deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    53%{background-image: linear-gradient(250deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    56%{background-image: linear-gradient(260deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    59%{background-image: linear-gradient(270deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    62%{background-image: linear-gradient(280deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    65%{background-image: linear-gradient(290deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    68%{background-image: linear-gradient(300deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    71%{background-image: linear-gradient(310deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    74%{background-image: linear-gradient(320deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    77%{background-image: linear-gradient(330deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    80%{background-image: linear-gradient(340deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    83%{background-image: linear-gradient(350deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    85%{background-image: linear-gradient(360deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    87%{background-image: linear-gradient(10deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    90%{background-image: linear-gradient(20deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    93%{background-image: linear-gradient(30deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    96%{background-image: linear-gradient(40deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    98%{background-image: linear-gradient(50deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    99%{background-image: linear-gradient(65deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+    100%{background-image: linear-gradient(80deg, rgb(182, 104, 104), rgb(240, 245, 175));}
+}
+
+.speed {
+    margin: 0;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    height: 15px;
+    user-select: none;
+}
+
+.speed:hover {
+    cursor:default;
+}
+
+.controls span {
+    background: #dddddd;
+    width: 5rem;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.slider {
+    -webkit-appearance: none; 
+    appearance: none;
+    outline: none;
+    border-radius: 10px;
+    appearance: none;
+    background: rgb(168, 168, 168);
+    height: 15px;
+    margin-right: 10px;
+}
+
+.slider::-moz-slider-thumb {
+    width: 5px; /* Set a specific slider handle width */
+    height: 15; /* Slider handle height */
+    background: #494949; /* Green background */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 5px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: #494949; /* Green background */
+    border-radius: 5px;
+    cursor: pointer; /* Cursor on hover */
 }
